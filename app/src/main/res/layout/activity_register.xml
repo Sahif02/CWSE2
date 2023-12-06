@@ -45,8 +45,8 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Welcome Back"
-                    android:textSize="28sp"
+                    android:text="Create Account"
+                    android:textSize="28dp"
                     android:textColor="@color/black"
                     android:shadowRadius="4"
                     android:shadowColor="@color/black"
@@ -71,45 +71,78 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <EditText
-                        android:id="@+id/editTextText2"
+                        android:id="@+id/username"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:layout_marginVertical="15dp"
                         android:background="@drawable/white_background"
                         android:ems="10"
                         android:hint="Username"
                         android:inputType="text"
                         android:textAlignment="center" />
+                    <TextView
+                        android:id="@+id/usernameError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:textColor="@color/red"/>
 
                     <EditText
-                        android:id="@+id/editTextTextPassword"
+                        android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:layout_marginVertical="15dp"
+                        android:background="@drawable/white_background"
+                        android:ems="10"
+                        android:hint="Email"
+                        android:inputType="text"
+                        android:textAlignment="center" />
+                    <TextView
+                        android:id="@+id/emailError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:textColor="@color/red"/>
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
                         android:background="@drawable/white_background"
                         android:ems="10"
                         android:hint="Password"
-                        android:inputType="text"
+                        android:inputType="textPassword"
                         android:textAlignment="center" />
+                    <TextView
+                        android:id="@+id/passwordError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:textColor="@color/red"/>
+
+                    <EditText
+                        android:id="@+id/repassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:background="@drawable/white_background"
+                        android:ems="10"
+                        android:hint="Re-type Password"
+                        android:inputType="textPassword"
+                        android:textAlignment="center" />
+                    <TextView
+                        android:id="@+id/repassError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:textColor="@color/red"/>
 
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/button4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Forgot Password?"
-                    app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-                    app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-                <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/registerbtn"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/green_background"
-                    android:text="Login"
+                    android:text="Register"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -119,10 +152,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/loginpagebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        android:text="Login"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
