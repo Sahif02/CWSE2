@@ -73,7 +73,7 @@
                     <EditText
                         android:id="@+id/username"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="40dp"
                         android:background="@drawable/white_background"
                         android:ems="10"
                         android:hint="Username"
@@ -83,13 +83,14 @@
                         android:id="@+id/usernameError"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:textSize="12dp"
                         android:textColor="@color/red"/>
 
                     <EditText
                         android:id="@+id/email"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="40dp"
                         android:background="@drawable/white_background"
                         android:ems="10"
                         android:hint="Email"
@@ -99,13 +100,14 @@
                         android:id="@+id/emailError"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:textSize="12dp"
                         android:textColor="@color/red"/>
 
                     <EditText
                         android:id="@+id/password"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="40dp"
                         android:background="@drawable/white_background"
                         android:ems="10"
                         android:hint="Password"
@@ -115,13 +117,14 @@
                         android:id="@+id/passwordError"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:textSize="12dp"
                         android:textColor="@color/red"/>
 
                     <EditText
                         android:id="@+id/repassword"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="40dp"
                         android:background="@drawable/white_background"
                         android:ems="10"
                         android:hint="Re-type Password"
@@ -131,6 +134,7 @@
                         android:id="@+id/repassError"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:textSize="12dp"
                         android:textColor="@color/red"/>
 
@@ -140,7 +144,6 @@
                     android:id="@+id/registerbtn"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_margin="10dp"
                     android:background="@drawable/green_background"
                     android:text="Register"
                     app:layout_constraintBottom_toBottomOf="parent"
