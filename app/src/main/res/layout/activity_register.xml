@@ -105,6 +105,23 @@
                         android:textColor="@color/red"/>
 
                     <EditText
+                        android:id="@+id/phonenum"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/white_background"
+                        android:ems="10"
+                        android:hint="Phone Number"
+                        android:inputType="number"
+                        android:textAlignment="center" />
+                    <TextView
+                        android:id="@+id/phoneError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="12dp"
+                        android:textColor="@color/red"/>
+
+                    <EditText
                         android:id="@+id/password"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
@@ -115,23 +132,6 @@
                         android:textAlignment="center" />
                     <TextView
                         android:id="@+id/passwordError"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:textSize="12dp"
-                        android:textColor="@color/red"/>
-
-                    <EditText
-                        android:id="@+id/repassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@drawable/white_background"
-                        android:ems="10"
-                        android:hint="Re-type Password"
-                        android:inputType="textPassword"
-                        android:textAlignment="center" />
-                    <TextView
-                        android:id="@+id/repassError"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"

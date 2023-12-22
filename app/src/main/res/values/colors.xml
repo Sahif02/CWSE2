@@ -6,4 +6,5 @@
     <color name="green">#64CCC5</color>
     <color name="red">#C40000</color>
     <color name="cyan">#EAFEFC</color>
+    <color name="grey">#40000000</color>
 </resources>

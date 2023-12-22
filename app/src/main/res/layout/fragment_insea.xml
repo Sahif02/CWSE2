@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="320dp"
+    android:layout_height="450dp"
+    tools:context=".insea">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/ingar_btn"
+                android:layout_width="24dp"
+                android:layout_height="30dp"
+                android:background="@drawable/arrowback"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sea Side"
+                android:textStyle="bold"
+                android:textSize="30dp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/sea_bg">
+
+            <ImageView
+                android:layout_width="280dp"
+                android:layout_height="370dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/inseadeck" />
+
+            <Button
+                android:id="@+id/outsea_btn"
+                android:layout_width="55dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="90dp"
+                android:layout_marginBottom="251dp"
+                android:background="@drawable/arrowup" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="-15dp"
+                android:layout_marginTop="200dp"
+                android:letterSpacing="0.25"
+                android:rotation="90"
+                android:text="Inside"
+                android:textSize="20dp" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="60dp"
+                android:padding="0dp"
+                android:text="SI-1" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="60dp"
+                android:padding="0dp"
+                android:text="SI-2" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="160dp"
+                android:padding="0dp"
+                android:text="SI-3" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="160dp"
+                android:padding="0dp"
+                android:text="SI-4" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="260dp"
+                android:padding="0dp"
+                android:text="SI-5" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="260dp"
+                android:padding="0dp"
+                android:text="SI-6" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

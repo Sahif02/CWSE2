@@ -14,17 +14,28 @@ public class homepage extends Fragment {
         // Required empty public constructor
     }
 
+    private User userDetails;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_homepage, container, false);
+
+        // Retrieve user details from arguments
+        if (getArguments() != null) {
+            userDetails = (User) getArguments().getSerializable("userDetails");
+        }
 
         Button bookNowButton = view.findViewById(R.id.bookingbtn);
         bookNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Replace with the code to navigate to the booking fragment
-                ((MainActivity) requireActivity()).loadFragment(new booking(), false);
+                booking fragment = new booking();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("userDetails", userDetails);
+                fragment.setArguments(bundle);
+                ((MainActivity) requireActivity()).loadFragment(fragment, false);
             }
         });
 
