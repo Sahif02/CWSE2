@@ -13,11 +13,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+// ... Your existing imports ...
+
 public class register extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper;
-    private EditText username, email, password, repass;
-    private TextView usernameError, emailError, passwordError, repassError;
+    private EditText username, email, password, phone;
+    private TextView usernameError, emailError, passwordError, phoneError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +33,11 @@ public class register extends AppCompatActivity {
         username = findViewById(R.id.username);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        repass = findViewById(R.id.repassword);
+        phone = findViewById(R.id.phonenum);
         usernameError = findViewById(R.id.usernameError);
         emailError = findViewById(R.id.emailError);
         passwordError = findViewById(R.id.passwordError);
-        repassError = findViewById(R.id.repassError);
+        phoneError = findViewById(R.id.phoneError);
 
         // Register button click listener
         Button registerButton = findViewById(R.id.registerbtn);
@@ -48,16 +50,16 @@ public class register extends AppCompatActivity {
                 usernameError.setText("");
                 emailError.setText("");
                 passwordError.setText("");
-                repassError.setText("");
+                phoneError.setText("");
 
                 String uname = username.getText().toString();
                 String uemail = email.getText().toString();
                 String upass = password.getText().toString();
-                String confirmpass = repass.getText().toString();
+                String uphone = phone.getText().toString();
 
-                if (validateInput(uname, uemail, upass, confirmpass)) {
+                if (validateInput(uname, uemail, upass, uphone)) {
                     // Store user data into the local database
-                    if (storeUserData(uname, uemail, upass)) {
+                    if (storeUserData(uname, uemail, upass, uphone)) {
                         // Show a toast message
                         Toast.makeText(register.this, "Registration successful!", Toast.LENGTH_SHORT).show();
 
@@ -65,7 +67,7 @@ public class register extends AppCompatActivity {
                         redirectToLoginPage();
                     } else {
                         // Show an error message if data already exists
-                        Toast.makeText(register.this, "Username or email already exists!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(register.this, "Username, email, or phone already exists!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -83,7 +85,7 @@ public class register extends AppCompatActivity {
         });
     }
 
-    private boolean validateInput(String uname, String uemail, String upass, String confirmpass) {
+    private boolean validateInput(String uname, String uemail, String upass, String uphone) {
         boolean isValid = true;
 
         if (uname.isEmpty()) {
@@ -101,19 +103,24 @@ public class register extends AppCompatActivity {
             isValid = false;
         }
 
-        if (!upass.equals(confirmpass)) {
-            repassError.setText("Passwords do not match");
+        if (uphone.isEmpty()) {
+            phoneError.setText("Cannot leave blank");
             isValid = false;
         }
 
-        // Check if email or username already exists in the database
+        // Check if email, username, or phone already exists in the database
         if (isUserExists(uname)) {
             usernameError.setText("Username already exists!");
             isValid = false;
         }
 
         if (isEmailExists(uemail)) {
-            emailError.setText("email already exists!");
+            emailError.setText("Email already exists!");
+            isValid = false;
+        }
+
+        if (isPhoneExists(uphone)) {
+            phoneError.setText("Phone already exists!");
             isValid = false;
         }
 
@@ -184,7 +191,39 @@ public class register extends AppCompatActivity {
         return emailExists;
     }
 
-    private boolean storeUserData(String uname, String uemail, String upass) {
+    private boolean isPhoneExists(String phone) {
+        // Get a readable database
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        // Define a projection that specifies which columns to query
+        String[] projection = {DatabaseHelper.COLUMN_PHONE};
+
+        // Define the selection criteria
+        String selection = DatabaseHelper.COLUMN_PHONE + " = ? ";
+        String[] selectionArgs = {phone};
+
+        // Perform the query
+        Cursor cursor = db.query(
+                DatabaseHelper.TABLE_USER,   // The table to query
+                projection,                  // The array of columns to return (null to return all)
+                selection,                   // The columns for the WHERE clause
+                selectionArgs,               // The values for the WHERE clause
+                null,                        // don't group the rows
+                null,                        // don't filter by row groups
+                null                         // don't sort order
+        );
+
+        // Check if the cursor has any rows
+        boolean phoneExists = cursor.moveToFirst();
+
+        // Close the cursor and database
+        cursor.close();
+        db.close();
+
+        return phoneExists;
+    }
+
+    private boolean storeUserData(String uname, String uemail, String upass, String uphone) {
         // Get a writable database
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
@@ -193,6 +232,7 @@ public class register extends AppCompatActivity {
         values.put(DatabaseHelper.COLUMN_USERNAME, uname);
         values.put(DatabaseHelper.COLUMN_EMAIL, uemail);
         values.put(DatabaseHelper.COLUMN_PASSWORD, upass);
+        values.put(DatabaseHelper.COLUMN_PHONE, uphone);
 
         // Insert data into the "user" table
         long newRowId = db.insert(DatabaseHelper.TABLE_USER, null, values);
@@ -214,4 +254,6 @@ public class register extends AppCompatActivity {
         // Finish the current activity to prevent going back to the registration page
         finish();
     }
+
 }
+

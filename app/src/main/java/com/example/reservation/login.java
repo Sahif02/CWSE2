@@ -9,14 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class login extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper;
-    private EditText usrname, pass;
-    private TextView wrongname, wrongpass;
+    private EditText usernameEditText, passwordEditText;
+    private TextView usernameError, passwordError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,32 +26,37 @@ public class login extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
 
         // Find views
-        usrname = findViewById(R.id.username);
-        pass = findViewById(R.id.password);
-        wrongname = findViewById(R.id.wrongUsername);
-        wrongpass = findViewById(R.id.wrongPassword);
+        usernameEditText = findViewById(R.id.username);
+        passwordEditText = findViewById(R.id.password);
+        usernameError = findViewById(R.id.wrongUsername);
+        passwordError = findViewById(R.id.wrongPassword);
 
         Button loginButton = findViewById(R.id.loginbtn);
         Button registerButton = findViewById(R.id.registerpagebtn);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
+            private User userDetails;
+
             @Override
             public void onClick(View view) {
-                wrongname.setText("");
-                wrongpass.setText("");
+                usernameError.setText("");
+                passwordError.setText("");
 
-                String uname = usrname.getText().toString();
-                String upass = pass.getText().toString();
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
 
-                if (validateInput(uname, upass)) {
-                    if (authenticateUser(uname, upass)) {
+                if (validateInput(username, password)) {
+                    if (authenticateUser(username, password)) {
                         // Successful login
                         Toast.makeText(login.this, "Login successful!", Toast.LENGTH_SHORT).show();
 
-                        // Navigate to the desired activity (e.g., HomeActivity)
-                        // Replace HomeActivity.class with the actual activity you want to navigate to
+                        userDetails = getUserDetails(username);
+
                         Intent intent = new Intent(login.this, MainActivity.class);
+                        intent.putExtra("userDetails", userDetails);
                         startActivity(intent);
+
+
                     } else {
                         // Invalid username or password
                         Toast.makeText(login.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
@@ -70,41 +74,32 @@ public class login extends AppCompatActivity {
         });
     }
 
-    private boolean validateInput(String uname, String upass) {
+    private boolean validateInput(String username, String password) {
         boolean isValid = true;
 
-        if (uname.isEmpty()) {
-            wrongname.setText("Cannot leave blank");
+        if (username.isEmpty()) {
+            usernameError.setText("Cannot leave blank");
             isValid = false;
         }
 
-        if (uname.isEmpty()) {
-            wrongpass.setText("Cannot leave blank");
-            isValid = false;
-        }
-
-        if (!authenticateUser(uname, upass)) {
-            wrongname.setText("Wrong Username!");
-            wrongpass.setText("Wrong Password!");
+        if (password.isEmpty()) {
+            passwordError.setText("Cannot leave blank");
             isValid = false;
         }
 
         return isValid;
     }
 
-    private boolean authenticateUser(String uname, String upass) {
+    private boolean authenticateUser(String username, String password) {
         // Get a readable database
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
         // Define the columns you want to retrieve
-        String[] projection = {
-                DatabaseHelper.COLUMN_USERNAME,
-                DatabaseHelper.COLUMN_PASSWORD
-        };
+        String[] projection = {DatabaseHelper.COLUMN_USERNAME, DatabaseHelper.COLUMN_PASSWORD};
 
         // Define the selection criteria
         String selection = DatabaseHelper.COLUMN_USERNAME + " = ? AND " + DatabaseHelper.COLUMN_PASSWORD + " = ?";
-        String[] selectionArgs = {uname, upass};
+        String[] selectionArgs = {username, password};
 
         // Query the database
         Cursor cursor = db.query(
@@ -125,5 +120,47 @@ public class login extends AppCompatActivity {
         db.close();
 
         return loginSuccessful;
+    }
+
+    private User getUserDetails(String username) {
+        User userDetails = new User();
+
+        // Get a readable database
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        // Define the columns you want to retrieve
+        String[] projection = {
+                DatabaseHelper.COLUMN_USERNAME,
+                DatabaseHelper.COLUMN_EMAIL,
+                DatabaseHelper.COLUMN_PHONE
+        };
+
+        // Define the selection criteria
+        String selection = DatabaseHelper.COLUMN_USERNAME + " = ?";
+        String[] selectionArgs = {username};
+
+        // Query the database
+        Cursor cursor = db.query(
+                DatabaseHelper.TABLE_USER,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        // Move to the first row of the result
+        if (cursor.moveToFirst()) {
+            userDetails.setUsername(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_USERNAME)));
+            userDetails.setEmail(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_EMAIL)));
+            userDetails.setPhone(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PHONE)));
+        }
+
+        // Close the cursor and database
+        cursor.close();
+        db.close();
+
+        return userDetails;
     }
 }
