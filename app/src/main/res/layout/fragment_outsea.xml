@@ -68,6 +68,7 @@
                 android:textSize="20dp" />
 
             <Button
+                android:id="@+id/so1btn"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_alignParentStart="true"
@@ -78,6 +79,7 @@
                 android:text="SO-1" />
 
             <Button
+                android:id="@+id/so2btn"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_alignParentStart="true"
@@ -88,6 +90,7 @@
                 android:text="SO-2" />
 
             <Button
+                android:id="@+id/so3btn"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_alignParentStart="true"
@@ -98,6 +101,7 @@
                 android:text="SO-3" />
 
             <Button
+                android:id="@+id/so4btn"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_alignParentStart="true"
@@ -108,6 +112,7 @@
                 android:text="SO-4" />
 
             <Button
+                android:id="@+id/so5btn"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_alignParentStart="true"
@@ -118,6 +123,7 @@
                 android:text="SO-5" />
 
             <Button
+                android:id="@+id/so6btn"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_alignParentStart="true"

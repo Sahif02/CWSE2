@@ -68,6 +68,7 @@
                 android:textSize="20dp" />
 
             <Button
+                android:id="@+id/gi1btn"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_alignParentEnd="true"
@@ -78,6 +79,7 @@
                 android:text="GI-1" />
 
             <Button
+                android:id="@+id/gi2btn"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_alignParentEnd="true"
@@ -88,6 +90,7 @@
                 android:text="GI-2" />
 
             <Button
+                android:id="@+id/gi3btn"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_alignParentEnd="true"
@@ -98,6 +101,7 @@
                 android:text="GI-3" />
 
             <Button
+                android:id="@+id/gi4btn"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_alignParentEnd="true"
@@ -108,6 +112,7 @@
                 android:text="GI-4" />
 
             <Button
+                android:id="@+id/gi5btn"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_alignParentEnd="true"
@@ -118,6 +123,7 @@
                 android:text="GI-5" />
 
             <Button
+                android:id="@+id/gi6btn"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
                 android:layout_alignParentEnd="true"
