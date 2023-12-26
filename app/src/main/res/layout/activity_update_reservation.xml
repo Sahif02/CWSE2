@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/customerNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Customer Name"/>
+
+    <EditText
+        android:id="@+id/customerPhoneEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/customerNameEditText"
+        android:layout_marginTop="8dp"
+        android:hint="Customer Phone"/>
+
+    <EditText
+        android:id="@+id/seatingAreaEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/customerPhoneEditText"
+        android:layout_marginTop="8dp"
+        android:hint="Seating Area"/>
+
+    <EditText
+        android:id="@+id/dateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seatingAreaEditText"
+        android:layout_marginTop="8dp"
+        android:hint="Date"/>
+
+    <EditText
+        android:id="@+id/mealTimeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dateEditText"
+        android:layout_marginTop="8dp"
+        android:hint="Meal Time"/>
+
+    <EditText
+        android:id="@+id/tableSizeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mealTimeEditText"
+        android:layout_marginTop="8dp"
+        android:inputType="number"
+        android:hint="Table Size"/>
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tableSizeEditText"
+        android:layout_marginTop="16dp"
+        android:text="Update"/>
+
+</RelativeLayout>
