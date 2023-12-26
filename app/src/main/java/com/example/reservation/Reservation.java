@@ -1,8 +1,12 @@
 package com.example.reservation;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Reservation implements Serializable {
+    @SerializedName("id")
+    private int id;
     private String customerName;
     private String customerPhoneNumber;
     private String meal;
@@ -58,5 +62,12 @@ public class Reservation implements Serializable {
         this.date = date;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
 

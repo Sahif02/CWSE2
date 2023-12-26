@@ -10,9 +10,15 @@ import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
     private List<Reservation> historyItems;
+    private OnItemClickListener listener;
 
-    public HistoryAdapter(List<Reservation> historyItems) {
+    public interface OnItemClickListener {
+        void onItemClick(Reservation historyItem);
+    }
+
+    public HistoryAdapter(List<Reservation> historyItems, OnItemClickListener listener) {
         this.historyItems = historyItems;
+        this.listener = listener;
     }
 
     @NonNull
@@ -33,7 +39,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         return historyItems.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView customerNameTextView;
         private TextView seatingAreaTextView;
         private TextView dateTextView;
@@ -47,6 +53,17 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             dateTextView = itemView.findViewById(R.id.dateTextView);
             mealTimeTextView = itemView.findViewById(R.id.mealTimeTextView);
             tableSizeTextView = itemView.findViewById(R.id.tableSizeTextView);
+
+            // Set click listener for the item
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemClick(historyItems.get(position));
+                    }
+                }
+            });
         }
 
         public void bind(Reservation historyItem) {

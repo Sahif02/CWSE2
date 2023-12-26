@@ -1,5 +1,7 @@
 package com.example.reservation;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -27,27 +29,6 @@ public class receipt extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipt);
-
-        // Create notification channel
-        NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
-        NotificationManager manager = getSystemService(NotificationManager.class);
-        manager.createNotificationChannel(channel);
-
-        // Build notification
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(receipt.this, "My Notification");
-        builder.setContentTitle("The Food Bridge");
-        builder.setContentText("Hi there, Thank you for booking with us.");
-        builder.setSmallIcon(R.drawable.ic_launcher_background);
-        builder.setAutoCancel(true);
-        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-        // Show notification
-        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(receipt.this);
-        if (ActivityCompat.checkSelfPermission(receipt.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Handle the case where the permission is not granted
-            return;
-        }
-        managerCompat.notify(1, builder.build());
 
         // Retrieve reservation data
         Intent intent = getIntent();
@@ -84,8 +65,11 @@ public class receipt extends AppCompatActivity {
             backToMenuButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent mainMenuIntent = new Intent(receipt.this, MainActivity.class);
-                    startActivity(mainMenuIntent);
+                    Intent intent = new Intent(receipt.this, MainActivity.class);
+                    intent.putExtra("userDetails", userDetails);
+
+                    // Start ReceiptActivity
+                    startActivity(intent);
                     finish();
                 }
             });
@@ -93,8 +77,11 @@ public class receipt extends AppCompatActivity {
             backToMenuButton1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent mainMenuIntent = new Intent(receipt.this, MainActivity.class);
-                    startActivity(mainMenuIntent);
+                    Intent intent = new Intent(receipt.this, MainActivity.class);
+                    intent.putExtra("userDetails", userDetails);
+
+                    // Start ReceiptActivity
+                    startActivity(intent);
                     finish();
                 }
             });
@@ -103,9 +90,7 @@ public class receipt extends AppCompatActivity {
             history.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent mainMenuIntent = new Intent(receipt.this, MainActivity.class);
-                    startActivity(mainMenuIntent);
-                    finish();
+
                 }
             });
 

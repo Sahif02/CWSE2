@@ -48,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
                     fragment.setArguments(bundle);
                     loadFragment(fragment, false);
                 } else if (itemId == R.id.navigation_history) {
-                    loadFragment(new History(), false);
+                    History fragment = new History();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("userDetails", userDetails);
+                    fragment.setArguments(bundle);
+                    loadFragment(fragment, false);
                 } else {
                     Profiles fragment = new Profiles();
                     Bundle bundle = new Bundle();
